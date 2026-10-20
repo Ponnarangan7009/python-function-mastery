@@ -160,3 +160,60 @@ print("Fibonacci number at position 12:", fibonacci(12))  # 144
 # 7. When might a loop be a better choice?
 # A loop is often simpler for straightforward repetition and avoids
 # building up recursive calls on the call stack.
+
+
+# Additional practice: four recursion problems
+
+# Exercise 10: Sum the digits of a non-negative integer.
+def sum_of_digits(number):
+    """Return the sum of the digits in a non-negative integer."""
+    if number < 0:
+        raise ValueError("number must be non-negative")
+    if number < 10:
+        return number
+    return number % 10 + sum_of_digits(number // 10)
+
+
+# Exercise 11: Calculate a non-negative integer power.
+def power(base, exponent):
+    """Return base raised to exponent using recursive multiplication."""
+    if exponent < 0:
+        raise ValueError("exponent must be non-negative")
+    if exponent == 0:
+        return 1
+    return base * power(base, exponent - 1)
+
+
+# Exercise 12: Reverse a string.
+def reverse_string(text):
+    """Return text in reverse order using recursion."""
+    if len(text) <= 1:
+        return text
+    return text[-1] + reverse_string(text[:-1])
+
+
+# Exercise 13: Check whether a string is a palindrome.
+def is_palindrome(text):
+    """Return whether text reads the same from both ends (case-sensitive)."""
+    def check_ends(left, right):
+        if left >= right:
+            return True
+        if text[left] != text[right]:
+            return False
+        return check_ends(left + 1, right - 1)
+
+    return check_ends(0, len(text) - 1)
+
+
+print("Sum of digits in 472:", sum_of_digits(472))  # 13
+print("2 to the power of 5:", power(2, 5))  # 32
+print("Reversed string:", reverse_string("hello"))  # olleh
+print("Is 'level' a palindrome?", is_palindrome("level"))  # True
+
+
+# Try these cases too:
+# sum_of_digits(0) == 0
+# power(7, 0) == 1
+# reverse_string("") == ""
+# is_palindrome("python") is False
+# is_palindrome("") is True

@@ -152,3 +152,62 @@ print("fibonacci(12):", fibonacci(12))  # 144
 # - Trace a small input by hand when the calls feel confusing.
 # - This simple Fibonacci version repeats calculations, so use it only
 #   for small inputs.
+
+
+# 10. Sum the digits of a non-negative integer
+def sum_of_digits(number):
+    """Return the sum of the digits in a non-negative integer."""
+    if number < 0:
+        raise ValueError("number must be non-negative")
+    if number < 10:  # Base case: a single digit is its own digit sum
+        return number
+    return number % 10 + sum_of_digits(number // 10)
+
+
+# 11. Raise a number to a non-negative integer power
+def power(base, exponent):
+    """Return base raised to exponent using recursive multiplication."""
+    if exponent < 0:
+        raise ValueError("exponent must be non-negative")
+    if exponent == 0:  # Base case
+        return 1
+    return base * power(base, exponent - 1)
+
+
+# 12. Reverse a string recursively
+def reverse_string(text):
+    """Return text in reverse order using recursive string processing."""
+    if len(text) <= 1:  # Base case: empty and one-character strings
+        return text
+    return text[-1] + reverse_string(text[:-1])
+
+
+# 13. Check whether a string is a palindrome
+def is_palindrome(text):
+    """Return whether text reads the same from both ends (case-sensitive)."""
+    def check_ends(left, right):
+        if left >= right:  # Base case: all character pairs matched
+            return True
+        if text[left] != text[right]:
+            return False
+        return check_ends(left + 1, right - 1)
+
+    return check_ends(0, len(text) - 1)
+
+
+print("sum_of_digits(472):", sum_of_digits(472))  # 13
+print("power(2, 5):", power(2, 5))  # 32
+print("reverse_string('hello'):", reverse_string("hello"))  # olleh
+print("is_palindrome('level'):", is_palindrome("level"))  # True
+
+
+# Complexity notes for the examples above:
+# - sum_of_digits: O(d) time and O(d) stack space, where d is digit count.
+# - power: O(exponent) time and O(exponent) stack space.
+# - reverse_string: O(n^2) time because every call slices and concatenates;
+#   O(n) call-stack depth, where n is the string length.
+# - is_palindrome: O(n) time and O(n) call-stack space in the worst case.
+#
+# Each active call has its own frame on the call stack. Calls build up until
+# the base case, then return in reverse order. power(2, 3), for example,
+# reaches power(2, 0) before returning 1, 2, 4, and finally 8.

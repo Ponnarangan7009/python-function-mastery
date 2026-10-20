@@ -4,7 +4,7 @@ A hands-on project for learning Python functions through examples, exercises, an
 
 ## Lessons
 
-The root folder contains 19 lesson files:
+The root folder contains 21 lesson files:
 
 1. Function basics
 2. Parameters and arguments
@@ -25,6 +25,15 @@ The root folder contains 19 lesson files:
 17. Generator expressions
 18. Positional-only and keyword-only parameters
 19. Docstrings and type hints
+20. Recursion
+21. Exception handling
+
+The recursion lesson introduces base cases, recursive cases, the call stack,
+and time and space complexity. Its examples include digit sums, powers,
+string reversal, and palindrome checking.
+
+The exception handling lesson covers specific and grouped handlers, `else`,
+`finally`, raising built-in and custom exceptions, and reading tracebacks.
 
 ## Exercises
 
